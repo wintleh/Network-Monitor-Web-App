@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!--
+    TODO:
+    Use some type of loop here to show all the graphs currently saved [X]
+    Add some way to delete each graph [ ]
+    -->
+    {% if img_paths %}
+    <!-- Clear graphs form -->
+    {% for img_path in img_paths %}
+    <img src="{{ img_path }}">
+    {% endfor %}
+    {% else %}
+    <h2>No graphs generated</h2>
+    {% endif %}
+{% endblock %}

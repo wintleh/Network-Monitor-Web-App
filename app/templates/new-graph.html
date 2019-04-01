@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Create New Graph:</h2>
+    <!-- The form for creating a new graph -->
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.nic.label }}
+            {{ form.nic(size=32) }}
+        </p>
+        <p>
+            {{ form.time.label }}
+            {{ form.time(size=32) }}
+        </p>
+        <p>
+            {{ form.timeInterval.label }}
+            {{ form.timeInterval(size=32) }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}

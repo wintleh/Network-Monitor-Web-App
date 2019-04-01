@@ -1,0 +1,18 @@
+<html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="/static/style.css">
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Network Monitor</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            <a href="{{ url_for('index') }}"><h1>Network Monitor</h1></a>
+            <a href="{{ url_for('library') }}">Graphs</a>
+            <a href="{{ url_for('new_graph')}}">Create New Graph</a>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>
