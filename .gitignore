@@ -1,1 +1,4 @@
 env
+# Exclude everything in /data/raw, but don't ignore the directory
+./data/raw/*
+!./data/raw/.gitkeep
