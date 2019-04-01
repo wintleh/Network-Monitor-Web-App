@@ -2,3 +2,6 @@ env
 # Exclude everything in /data/raw, but don't ignore the directory
 ./data/raw/*
 !./data/raw/.gitkeep
+# Exclude everything in /app/static/images, but don't ignore imagedata.csv
+./app/static/images/*
+!./app/static/images/imagedata.csv
