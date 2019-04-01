@@ -6,6 +6,7 @@ from analyze import NetworkUsageGraph
 import os
 
 # TODO Clean up the file paths
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 # Holds a list of all graphs and related data
 reportfile = './app/static/images/imagedata.csv'
@@ -17,21 +18,25 @@ def index():
     # Use library as the main page
     return redirect(url_for('library'))
 
-@app.route('/library')
+@app.route('/library', methods=['GET', 'POST'])
 def library():
 
     form = LibraryForm()
 
     if form.validate_on_submit():
         # Clear images dir except for imagedata.csv, clear imagedata.csv and graph
-        pass
+        graph_files = graphs.clear()
+        for graph_file in graph_files:
+            # Removes the file
+            os.remove(os.path.join(dir_path, graph_file[1:]))
 
     # If there are no graphs and no data to load, show "No graphs generated"
     if(graphs.is_empty() and not graphs.load_data()):
         return render_template('library.html')
 
     # Show the page and display all the graphs from newest to oldest
-    return render_template('library.html', img_paths=graphs.location_list())
+    return render_template('library.html', img_paths=graphs.location_list(), \
+        form=form)
 
 @app.route('/new-graph', methods=['GET', 'POST'])
 def new_graph():

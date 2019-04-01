@@ -8,6 +8,10 @@
     -->
     {% if img_paths %}
     <!-- Clear graphs form -->
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.reset() }}</p>
+    </form>
     {% for img_path in img_paths %}
     <img src="{{ img_path }}">
     {% endfor %}

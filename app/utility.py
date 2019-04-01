@@ -11,7 +11,7 @@ class GraphList:
     '''
 
     def __init__(self, reportfile):
-        self.list = pd.DataFrame(columns=['nic', 'location', 'time', 'timeInterval'])
+        self.list = self._empty_df()
         self.reportfile = reportfile
 
     def _empty_df(self):
@@ -59,10 +59,18 @@ class GraphList:
         self.list.to_csv(self.reportfile, index=False)
 
     def clear(self):
-        self.list = _empty_df()
+        '''
+        Clears the list. Returns a list of the locations to the .png files
+        for the graphs that were in the list
+        '''
+        # Gets a list of all the locations listed int he location column
+        location_list = self.list['location'].tolist()
 
-#     def delete(self):
-        # TODO implement this: figure out how deleting graphs will work
+        # Overwrite self.list with an empty df, update the reportfile
+        self.list = self._empty_df()
+        self.list.to_csv(self.reportfile, index=False)
+
+        return location_list
 
     def load_data(self):
         '''
