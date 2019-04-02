@@ -9,6 +9,7 @@
 - [Matplotlib](https://matplotlib.org/)
 - [Flask](http://flask.pocoo.org/)
 - [Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/)
+- [wtforms-html5](https://github.com/brutus/wtforms-html5/)
 
 ### How To Use:
 - Install libraries
