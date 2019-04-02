@@ -10,15 +10,19 @@
             {{ form.nic(size=32) }}
         </p>
         <p>
-            {{ form.time.label }}
-            {{ form.time(size=32) }}
-        </p>
-        <p>
-            {{ form.timeInterval.label }}
-            {{ form.timeInterval(size=32) }}
+            {{ form.date.label }}
+            {{ form.date(size=32) }}
         </p>
         <p>
             {{ form.submit() }}
         </p>
     </form>
 {% endblock %}
+
+
+<!-- TODO implement
+<p>
+    {{ form.timeInterval.label }}
+    {{ form.timeInterval(size=32) }}
+</p>
+-->

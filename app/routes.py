@@ -12,11 +12,15 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 reportfile = './app/static/images/imagedata.csv'
 graphs = GraphList(reportfile)
 
+################################################################################
+
 @app.route('/')
 @app.route('/index')
 def index():
     # Use library as the main page
     return redirect(url_for('library'))
+
+################################################################################
 
 @app.route('/library', methods=['GET', 'POST'])
 def library():
@@ -38,13 +42,15 @@ def library():
     return render_template('library.html', img_paths=graphs.location_list(), \
         form=form)
 
+################################################################################
+
 @app.route('/new-graph', methods=['GET', 'POST'])
 def new_graph():
 
     form = GraphForm()
     nic = str(form.nic.data).strip()
-    time = str(form.time.data).strip()
-    timeInterval = str(form.timeInterval.data).strip()
+    date = str(form.date.data).strip()
+    # timeInterval = str(form.timeInterval.data).strip()    TODO implement
 
     if form.validate_on_submit():
         # Create graph object based on information in the form
@@ -53,10 +59,11 @@ def new_graph():
             next_index = graphs.get_next_file_index(nic)
             graph_location = str(graph_dir + nic + '(' + next_index + ').png')
 
-            new_graph = NetworkUsageGraph(nic, str('./data/raw/' + nic + '.csv'))
+            new_graph = NetworkUsageGraph(nic, \
+                str('./data/raw/' + nic + '.csv'))
             new_graph.generatePlot().savefig(graph_location)
 
-            graphs.add(nic, graph_location[5:], time, timeInterval)
+            graphs.add(nic, graph_location[5:], date)#, timeInterval) TODO implement
 
         except FileNotFoundError:
             pass

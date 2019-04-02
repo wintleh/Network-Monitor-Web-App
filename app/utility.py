@@ -15,7 +15,7 @@ class GraphList:
         self.reportfile = reportfile
 
     def _empty_df(self):
-        return pd.DataFrame(columns=['nic', 'location', 'time', 'timeInterval'])
+        return pd.DataFrame(columns=['nic', 'location', 'date']) # , 'timeInterval' TODO implement
 
     def get_next_file_index(self, nic):
         '''
@@ -23,7 +23,7 @@ class GraphList:
         '''
         # Get a dataframe of the locations of graphs associated with the nic
         nic_locations = self.list[self.list.loc[:, 'nic'] == nic]\
-            .drop(['nic', 'time', 'timeInterval'], axis=1)
+            .drop(['nic', 'date'], axis=1) # , 'timeInterval' TODO implement
 
         # Sort (descending) by location
         # Get the first element in location
@@ -44,14 +44,16 @@ class GraphList:
         return str(int(\
             re.sub(r'\w+.*\(|\).png', '', high_index_location[15:])) + 1)
 
-    def add(self, nic, location, time, timeInterval):
+    def add(self, nic, location, date): #, timeInterval): TODO implement
         '''
         Add a new entry to the list
         '''
         # Create a temporary dataframe with one row
         # Then combine it with the full dataframe
-        new_graph = pd.DataFrame({'nic':nic, 'location':location, 'time':time,\
-            'timeInterval':timeInterval}, index=[self.list.shape[0]])
+        new_graph = pd.DataFrame({'nic':nic, 'location':location, 'date':date},\
+            index=[self.list.shape[0]])
+            #'timeInterval':timeInterval},
+
 
         self.list = self.list.append(new_graph, sort=True)
 
