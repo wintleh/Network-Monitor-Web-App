@@ -12,8 +12,27 @@
         {{ form.hidden_tag() }}
         <p>{{ form.reset() }}</p>
     </form>
-    {% for img_path in img_paths %}
-    <img src="{{ img_path }}">
+    {% for index in graph_range %}
+    <div class="graph-table-container">
+        <div class="on-left">
+            <img src="{{ img_paths[index] }}">
+        </div>
+        <div class="move-down">
+            <table>
+                <tr>
+                    <th>Destination IP</th>
+                    <th>Number of Packets</th>
+                </tr>
+                {% for iteration in top_dest_range %}
+                <tr>
+                    <td>{{ df_NICdata.loc[index, 'destIP'][iteration] }}</td>
+                    <td>{{ df_NICdata.loc[index, 'packets'][iteration] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <br>
     {% endfor %}
     {% else %}
     <h2>No graphs generated</h2>

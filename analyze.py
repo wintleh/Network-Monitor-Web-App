@@ -11,6 +11,29 @@ plt.style.use('seaborn-whitegrid')
 # time indicates the middle of the graph
 # timeInterval indicated the total interval to be used, centered on time
 
+class RankIP:
+    # data
+
+    def __init__(self, data_file):
+        # Read in the data from the file
+        self.data = pd.read_csv(data_file).astype({'IP Address':str, \
+            'Packet Count': int})
+        self.data = self.data.rename(columns=\
+            {'IP Address':'destIP', 'Packet Count':'packets'})
+
+        # Sort by the packet count
+        self.data = self.data.sort_values(by=['packets'], ascending=False)#\
+            # inplace=True)
+
+    def get_top(self, number=5):
+        '''
+        Returns DataFrame of top "number" ip addresses and packet counts,
+        ranked by the packet count.
+        '''
+        # Get the first "number" rows, and all columns
+        return self.data.iloc[:number, :]
+
+
 class NetworkUsageGraph:
     # nic_Capacity
     # nicAddress
