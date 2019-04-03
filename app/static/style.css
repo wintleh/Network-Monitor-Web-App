@@ -7,6 +7,15 @@ a:hover {
   color: grey;
 }
 
+#nav-bar{
+  background-color: #BBBBBB;
+}
+
+.nav-link{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 .on-left {
   float: left;
 }
@@ -17,4 +26,5 @@ a:hover {
 
 .graph-table-container{
   overflow: auto;
+  outline: 2px solid black;
 }
