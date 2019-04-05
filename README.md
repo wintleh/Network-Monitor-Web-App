@@ -18,6 +18,9 @@
     - Navigate to Network Monitor Web App directory
     - Enter command: flask run
 
+### System Requirements:
+- Tested on Windows 10 using Firefox
+
 ### Loosely based on:
 - [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
