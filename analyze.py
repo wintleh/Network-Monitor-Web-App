@@ -113,7 +113,7 @@ class NetworkUsageGraph:
 
         fig = plt.figure()
         ax = plt.axes(title=self.nicAddress, \
-            xlabel=x_label, ylabel='Link usage (percentage)', ylim=(0, 1))
+            xlabel=x_label, ylabel='NIC usage (percentage)', ylim=(0, 1))
 
         ax.plot(self.x_values, \
             self.data.loc[self.start:(self.end-1), 'bytes/sec'] / self.nic_Capacity)
