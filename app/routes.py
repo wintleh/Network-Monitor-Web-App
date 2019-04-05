@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, make_response
 from app import app
 from app.forms import GraphForm, LibraryForm
 from app.utility import GraphList, NICDataList
@@ -23,6 +23,19 @@ graphs.load_data()
 
 ################################################################################
 
+@app.after_request
+def nocache(response):
+    '''
+    Used to make the server not cache the page. Makes images display correctly.
+    '''
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
+################################################################################
+# Handles showing content on each page
+################################################################################
 @app.route('/')
 @app.route('/index')
 def index():
@@ -50,9 +63,11 @@ def library():
         return render_template('library.html')
 
     # Show the page and display all the graphs from newest to oldest
-    return render_template('library.html', img_paths=graphs.location_list(), \
-        form=form, graph_range=range(len(graphs.location_list())), \
-        top_dest_range=range(top_n_dest), df_NICdata=nic_data.get_data())
+    # Do not cache the page, so that the images display correctly
+    return nocache(make_response(render_template(\
+        'library.html', img_paths=graphs.location_list(), form=form, \
+        graph_range=range(len(graphs.location_list())), \
+        top_dest_range=range(top_n_dest), df_NICdata=nic_data.get_data())))
 
 ################################################################################
 
