@@ -10,8 +10,10 @@
     <body>
         <div>
             <a href="{{ url_for('index') }}"><h1>Network Monitor</h1></a>
-            <a href="{{ url_for('library') }}">Graphs</a>
-            <a href="{{ url_for('new_graph')}}">Create New Graph</a>
+            <div id="nav-bar">
+                <a href="{{ url_for('library') }}", class='nav-link'>Graphs</a>
+                <a href="{{ url_for('new_graph')}}", class='nav-link'>Create New Graph</a>
+            </div>
         </div>
         {% block content %}{% endblock %}
     </body>

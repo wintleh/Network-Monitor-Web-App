@@ -5,3 +5,4 @@ env
 # Exclude everything in /app/static/images, but don't ignore imagedata.csv
 ./app/static/images/*
 !./app/static/images/imagedata.csv
+!./app/static/images/nicdata.csv

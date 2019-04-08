@@ -14,6 +14,12 @@
 - Install libraries
 - Set up software from [Network Monitor](https://github.com/wintleh/Network-Monitor)
 - Set the path from Network Monitor Server to the data/raw directory in Network Monitor Web App
+- Run flask:
+    - Navigate to Network Monitor Web App directory
+    - Enter command: flask run
+
+### System Requirements:
+- Tested on Windows 10 using Firefox
 
 ### Loosely based on:
 - [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
